@@ -1,19 +1,25 @@
 const TaskRepository = require('../repositories/TaskRepository')
 
-const TaskIndexService = require('../services/tasks/TaskIndexService')
-const TaskDeleteService = require('../services/tasks/TaskDeleteService')
-const TaskCreateService = require('../services/tasks/TaskCreateService')
-const TaskUpdateService = require('../services/tasks/TaskUpdateService')
-const TaskUpdateStatusService = require('../services/tasks/TaskUpdateStatusService')
+const {
+	TaskIndexService,
+	TaskCreateService,
+	TaskUpdateService,
+	TaskDeleteService,
+	TaskUpdateStatusService
+} = require('../services/tasks')
 
 class TasksController {
 	async create(request, response) {
-		const { title, description } = request.body
+		const { title, description, user_id } = request.body
 
 		const taskRepository = new TaskRepository()
 		const taskCreateService = new TaskCreateService(taskRepository)
 
-		const task = await taskCreateService.execute({ title, description })
+		const task = await taskCreateService.execute({
+			title,
+			description,
+			user_id
+		})
 
 		return response.status(201).json(task)
 	}

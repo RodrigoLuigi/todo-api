@@ -1,14 +1,14 @@
-const { Task } = require('../models')
+const { Tasks } = require('../database/models')
 
 class TaskRepository {
-	async create({ title, description }) {
-		const task_id = await Task.create({ title, description })
+	async create({ title, description, user_id }) {
+		const task_id = await Tasks.create({ title, description, user_id })
 
 		return task_id
 	}
 
 	async update(taskToUpdate) {
-		const updatedTask = await Task.update(
+		const updatedTask = await Tasks.update(
 			{ title: taskToUpdate.title, description: taskToUpdate.description },
 			{
 				where: { id: taskToUpdate.id }
@@ -19,13 +19,13 @@ class TaskRepository {
 	}
 
 	async findById(id) {
-		const taskFound = await Task.findOne({ where: { id } })
+		const taskFound = await Tasks.findOne({ where: { id } })
 
 		return taskFound
 	}
 
 	async index() {
-		const tasks = await Task.findAll({
+		const tasks = await Tasks.findAll({
 			order: [['id', 'ASC']]
 		})
 
@@ -33,7 +33,7 @@ class TaskRepository {
 	}
 
 	async updateStatus({ id, status }) {
-		const updatedTask = await Task.update(
+		const updatedTask = await Tasks.update(
 			{ status: status },
 			{
 				where: { id: id }
@@ -43,7 +43,7 @@ class TaskRepository {
 	}
 
 	async delete(id) {
-		await Task.destroy({ where: { id: id } })
+		await Tasks.destroy({ where: { id: id } })
 	}
 }
 
