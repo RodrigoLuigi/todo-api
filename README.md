@@ -16,7 +16,7 @@
 📌 To-do é uma aplicação de uma lista de tarefas digital para se organizar durante o dia-a-dia.
  O projeto foi desenvolvido com módulos separados para facilitar a escalabilidade e a manutenção da aplicação.
 
-Desenvolvido utilizando **Node.js** e **Express.** Criação de um banco de dados utilizando **PostgreSQL**, e manipulaçãod o DataBase utilizando **Sequelize**.
+Desenvolvido utilizando **Node.js** e **Express.** Criação de um banco de dados utilizando **PostgreSQL** e manipulação utilizando **Sequelize**.
 
 ## :gear: Features
 
